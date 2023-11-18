@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Category> //this gets the model to this page and we can iterate it.
+@{
+    ViewData["Title"] = "Index";
+}
+
+ 
+<h1>Index Category</h1>
+
+<div class="container p-3">
+    <div class="row pt-2">
+        <div class="col-6">
+            <h4 class="text-primary">Category List</h4>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-primary">Create new Category</a>
+        </div>
+    </div>
+
+</div>
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                Category Name
+            </th>
+            <th>
+                Display Order
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model.OrderBy(x=>x.DisplayOrder))
+        {
+            <tr>
+                <td width="50%">
+                    @obj.Name.ToUpperInvariant()
+                </td>
+                <td width="30%">
+                    @obj.DisplayOrder
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

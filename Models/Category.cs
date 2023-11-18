@@ -9,6 +9,6 @@ namespace MVC_Project.Models
         [Required]
         public string Name { get; set; }
         public int DisplayOrder { get; set; }
-        public DateTime CreatedDateTime { get; set; } = DateTime.Now;
+        public DateTime CreatedDateTime { get; set; } = DateTime.Today;
     }
 }
