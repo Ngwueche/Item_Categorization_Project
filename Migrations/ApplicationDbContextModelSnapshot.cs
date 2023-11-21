@@ -42,7 +42,7 @@ namespace MVC_Project.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("categories");
                 });
 #pragma warning restore 612, 618
         }
