@@ -1,0 +1,16 @@
+﻿@if (TempData["success"] != null)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/toaster-js/umd.js"></script>
+    <script type="text/javascript">
+        toast('@TempData["success"]');
+    </script>
+}
+@if (TempData["error"] != null)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/toaster-js/umd.js"></script>
+    <script type="text/javascript">
+        toast('@TempData["error"]');
+    </script>
+}

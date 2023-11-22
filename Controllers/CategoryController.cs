@@ -30,6 +30,7 @@ namespace MVC_Project.Controllers
             {
                 _context.categories.Add(category);
                 _context.SaveChanges();
+                TempData["success"] = "Item Created Successfully";
                 return RedirectToAction("Index");
             }
             return View(category);
@@ -50,6 +51,7 @@ namespace MVC_Project.Controllers
             {
                 _context.categories.Update(category);
                 _context.SaveChanges();
+                TempData["success"] = "Item Edited Successfully";
                 return RedirectToAction("Index");
             }
             return View(category);
@@ -57,20 +59,20 @@ namespace MVC_Project.Controllers
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0) return NotFound();
-            var CategoryFromDb = _context.categories.FirstOrDefault(c => c.Id == id);
+            var CategoryFromDb = _context.categories.Find(id);
             if (CategoryFromDb == null) return NotFound();
             return View(CategoryFromDb);
         }
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(Category category)
+        public IActionResult DeletePost(int? id)
         {
-            if (ModelState.IsValid)
-            {
-                _context.categories.Remove(category);
-                _context.SaveChanges();
-            }
+            var item = _context.categories.Find(id);
+            if (item == null) return NotFound();
+            _context.categories.Remove(item);
+            _context.SaveChanges();
+            TempData["success"] = "Item Deleted Successfully";
             return RedirectToAction("Index");
 
         }
